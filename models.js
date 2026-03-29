@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://mohdmursaleen5805_db_user:yrP03B8w8Y61xodW@cluster0.ka7ibvr.mongodb.net/todo-app");
+mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/todo-app", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 const UserSchema = new mongoose.Schema({
     username: String,
