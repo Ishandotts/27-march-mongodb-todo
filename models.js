@@ -1,25 +1,23 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
-mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/todo-app", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGO_URL);
 
 const UserSchema = new mongoose.Schema({
-    username: String,
-    password: String
+  username: String,
+  password: String,
 });
 
 const TodoSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    userId: mongoose.Types.ObjectId
+  title: String,
+  description: String,
+  userId: mongoose.Types.ObjectId,
 });
 
 const userModel = mongoose.model("users", UserSchema);
 const todoModel = mongoose.model("todos", TodoSchema);
 
 module.exports = {
-    userModel: userModel,
-    todoModel: todoModel
-}
+  userModel: userModel,
+  todoModel: todoModel,
+};
